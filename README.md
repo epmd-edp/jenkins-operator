@@ -42,3 +42,56 @@ In order to apply the necessary customization, get acquainted with the following
 * [GitLab Integration](documentation/gitlab-integration.md)
 * [GitHub Integration](documentation/github-integration.md)
 * [Customize CD Pipeline](documentation/customize-deploy-pipeline.md) 
+
+## Local deployment
+### Requirements:
+* Go version (great than 1.13)
+
+_**NOTE**: Make sure that environment variable GOPATH and GOROOT are added in PATH:_
+```
+export GOPATH=C:\Users\<<username>>\go
+export GOROOT=C:\Go
+```
+
+* Configured access to the VCS (see [Gerrit Setup for Developer](https://kb.epam.com/display/EPMDEDP/Gerrit+Setup+for+Developer))
+* GoLand Intellij Idea or another IDE
+
+### Deploy:
+1. Clone repository
+2. Open folder in GoLand Intellij Idea and select Add Configuration → Go Build
+![add-config](readme-resource/add_config.png "add-config") 
+3. Set the path to the main.go file in Files field and path to the Working directory for operator
+![build-config](readme-resource/build_config.png "build-config") 
+4. Specify a platform name (OpenShift/Kubernetes) and selected namespace in Environment tab 
+![add-env-vars](readme-resource/add_env_vars.png "add-env-vars") 
+5. Run 'go build main.go' (Shift+F10)
+![deploy-operator](readme-resource/deploy_operator.png "deploy-operator") 
+6. Check the operator logs in output console 
+```
+{"level":"info","ts":1580820956.2087429,"logger":"cmd","msg":"Go Version: go1.13.7"}
+{"level":"info","ts":1580820956.2087429,"logger":"cmd","msg":"Go OS/Arch: windows/amd64"}
+{"level":"info","ts":1580820956.2087429,"logger":"cmd","msg":"Version of operator-sdk: v0.8.0+git"}
+{"level":"info","ts":1580820956.2087429,"logger":"cmd","msg":""}
+{"level":"info","ts":1580820959.592205,"logger":"cmd","msg":"Registering Components."}
+{"level":"info","ts":1580820959.592205,"logger":"kubebuilder.controller","msg":"Starting EventSource","controller":"codebase-controller","source":"kind source: /, Kind="}
+{"level":"info","ts":1580820959.592205,"logger":"kubebuilder.controller","msg":"Starting EventSource","controller":"codebasebranch-controller","source":"kind source: /, Kind="}
+2020/02/04 14:55:59 Openshift clients was successfully created
+{"level":"info","ts":1580820959.608795,"logger":"kubebuilder.controller","msg":"Starting EventSource","controller":"gitserver-controller","source":"kind source: /, Kind="}
+{"level":"info","ts":1580820959.608795,"logger":"cmd","msg":"Starting the Cmd."}
+```
+
+### Exceptional Cases
+After starting Go build process you see the following error: 
+```
+go: finding github.com/openshift/api v3.9.0
+go: finding github.com/openshift/client-go v3.9.0
+go: errors parsing go.mod:
+C:\Users\<<username>>\Desktop\EDP\edp-admin-console\go.mod:36: require github.com/openshift/api: version "v3.9.0" invalid: unknown revision v3.9.0
+
+Compilation finished with exit code 1
+```
+
+This problem can resolve by manual update go dependency using golang command:
+```
+go get github.com/openshift/api@v3.9.0
+```
