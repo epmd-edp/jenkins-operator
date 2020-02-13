@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "ebdd2ed2_76804c94",
+        "filename": "pkg/apis/v2/v1alpha1/jenkinsjob_types.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000006
+      },
+      "writtenOn": "2020-02-13T11:18:19Z",
+      "side": 1,
+      "message": "omitempty?",
+      "range": {
+        "startLine": 20,
+        "startChar": 30,
+        "endLine": 20,
+        "endChar": 43
+      },
+      "revId": "649bf4f079fbaba3ca16cc7fd27e25ffaf1db464",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    }
+  ]
+}
