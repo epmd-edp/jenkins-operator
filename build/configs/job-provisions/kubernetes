@@ -98,13 +98,13 @@ if (BRANCH) {
 
     def buildKey = "Build-${type}-${buildTool.toLowerCase()}".toString()
     if (type.equalsIgnoreCase('application') || type.equalsIgnoreCase('library')) {
-        createCiPipeline("Build-${codebaseName}", codebaseName, stages.get(buildKey, defaultBuild), "build.groovy",
-                repositoryPath, gitCredentialsId, branch, gitServerCrName, gitServerCrVersion)
+        createCiPipeline("Build-${codebaseName}", codebaseName, stages.get(buildKey, defaultBuild), "build.groovy", repositoryPath, gitCredentialsId, branch, gitServerCrName, gitServerCrVersion)
+        queue("${codebaseName}/${branch.toUpperCase()}-Build-${codebaseName}")
     }
 }
 
-def createCiPipeline(pipelineName, codebaseName, codebaseStages, pipelineScript, repository, credId, watchBranch = "master", gitServerCrName, gitServerCrVersion) {
-    pipelineJob("${codebaseName}/${watchBranch.toUpperCase()}-${pipelineName}") {
+def createCiPipeline(pipelineName, codebaseName, codebaseStages, pipelineScript, repository, credId, watchBranch, gitServerCrName, gitServerCrVersion) {
+  	pipelineJob("${codebaseName}/${watchBranch.toUpperCase()}-${pipelineName}") {
         logRotator {
             numToKeep(10)
             daysToKeep(7)
