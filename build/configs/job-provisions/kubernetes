@@ -98,8 +98,7 @@ if (BRANCH) {
 
     def buildKey = "Build-${type}-${buildTool.toLowerCase()}".toString()
     if (type.equalsIgnoreCase('application') || type.equalsIgnoreCase('library')) {
-        createCiPipeline("Build-${codebaseName}", codebaseName, stages.get(buildKey, defaultBuild), "build.groovy",
-                repositoryPath, gitCredentialsId, branch, gitServerCrName, gitServerCrVersion)
+        createBuildPipeline("Build-${codebaseName}", codebaseName, stages.get(buildKey, defaultBuild), "build.groovy", codebaseName, stages.get(buildKey, defaultBuild), "build.groovy",
     }
 }
 
@@ -143,6 +142,53 @@ def createCiPipeline(pipelineName, codebaseName, codebaseStages, pipelineScript,
             }
         }
     }
+}
+
+def createBuildPipeline(pipelineName, codebaseName, codebaseStages, pipelineScript, repository, credId, watchBranch = "master", gitServerCrName, gitServerCrVersion) {
+    def jobExists = false
+    if("${watchBranch.toUpperCase()}-${pipelineName}".toString() in Jenkins.instance.getAllItems().collect{it.name})
+        jobExists = true
+    pipelineJob("${codebaseName}/${watchBranch.toUpperCase()}-${pipelineName}") {
+        logRotator {
+            numToKeep(10)
+            daysToKeep(7)
+        }
+        triggers {
+            gerrit {
+                events {
+                    if (pipelineName.contains("Build"))
+                        changeMerged()
+                    else
+                        patchsetCreated()
+                }
+                project("plain:${codebaseName}", ["plain:${watchBranch}"])
+            }
+        }
+        definition {
+            cpsScm {
+                scm {
+                    git {
+                        remote {
+                            url(repository)
+                            credentials(credId)
+                        }
+                        branches("${watchBranch}")
+                        scriptPath("${pipelineScript}")
+                    }
+                }
+                parameters {
+                    stringParam("GIT_SERVER_CR_NAME", "${gitServerCrName}", "Name of Git Server CR to generate link to Git server")
+                    stringParam("GIT_SERVER_CR_VERSION", "${gitServerCrVersion}", "Version of GitServer CR Resource")
+                    stringParam("STAGES", "${codebaseStages}", "Consequence of stages in JSON format to be run during execution")
+                    stringParam("GERRIT_PROJECT_NAME", "${codebaseName}", "Gerrit project name(Codebase name) to be build")
+                    if (pipelineName.contains("Build"))
+                        stringParam("BRANCH", "${watchBranch}", "Branch to build artifact from")
+                }
+            }
+        }
+    }
+    if(!jobExists)
+      queue("${codebaseName}/${watchBranch.toUpperCase()}-${pipelineName}")
 }
 
 def createReleasePipeline(pipelineName, codebaseName, codebaseStages, pipelineScript, repository, credId, gitServerCrName, gitServerCrVersion) {
