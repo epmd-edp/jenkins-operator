@@ -1,26 +1,33 @@
-## Local development
-### Requirements:
-* Go version (great than 1.13)
+## Local Development
+### Requirements
+* Golang version higher than 1.13;
 
-_**NOTE**: Make sure that environment variable GOPATH and GOROOT are added in PATH:_
-```
-export GOPATH=C:\Users\<<username>>\go
-export GOROOT=C:\Go
-```
+>_**NOTE**: The GOPATH and GOROOT environment variables should be added in PATH._
+>```
+>export GOPATH=C:\Users\<<username>>\go
+>export GOROOT=C:\Go
+>```
 
-* Configured access to the VCS (see [Gerrit Setup for Developer](https://kb.epam.com/display/EPMDEDP/Gerrit+Setup+for+Developer))
-* GoLand Intellij Idea or another IDE
+* Configured access to the VCS, for details, refer to the [Gerrit Setup for Developer](https://kb.epam.com/display/EPMDEDP/Gerrit+Setup+for+Developer) page;
+* GoLand IntelliJ IDEA or another IDE.
 
-### Running operator:
-1. Clone repository
-2. Open folder in GoLand Intellij Idea and select Add Configuration → Go Build
-![add-config](../readme-resource/add_config.png "add-config") 
-3. Set the path to the main.go file in Files field and path to the Working directory for operator
-![build-config](../readme-resource/build_config.png "build-config") 
-4. Specify a platform name (OpenShift/Kubernetes) and selected namespace in Environment tab 
-![add-env-vars](../readme-resource/add_env_vars.png "add-env-vars") 
-5. Run ```go build main.go``` (Shift+F10)
-6. Check the operator logs in output console
+### Operator Launch
+In order to run the operator, follow the steps below:
+
+1. Clone repository;
+2. Open folder in GoLand Intellij IDEA, click the ![add_config_button](../readme-resource/add_config_button.png "add_config_button") button and select the **Go Build** option:
+![add_configuration](../readme-resource/add_configuration.png "add_configuration") 
+3. In Configuration tab, fill in the following:
+
+    3.1. In the Field field, indicate the path to the main.go file;
+    
+    3.2. In the Working directory field, indicate the path to the operator;
+    
+    3.3. In the Environment field, specify the platform name (OpenShift/Kubernetes);
+   ![build-config](../readme-resource/build_config.png "build-config") 
+
+4. Run 'go build main.go' (Shift+F10);
+5. Check the operator logs in output console:
 ```
 {"level":"info","ts":1580892926.0925794,"logger":"cmd","msg":"Go OS/Arch: windows/amd64"}
 {"level":"info","ts":1580892926.0925794,"logger":"cmd","msg":"Version of operator-sdk: v0.8.0+git"}
@@ -34,7 +41,9 @@ export GOROOT=C:\Go
 ```
 
 ### Exceptional Cases
-After starting Go build process you see the following error: 
+##### CASE 1
+
+After starting the Go build process, the following error will appear: 
 ```
 go: finding github.com/openshift/api v3.9.0
 go: finding github.com/openshift/client-go v3.9.0
@@ -44,13 +53,15 @@ C:\Users\<<username>>\Desktop\EDP\edp-admin-console\go.mod:36: require github.co
 Compilation finished with exit code 1
 ```
 
-This problem can resolve by manual update go dependency using golang command:
+To resolve the issue, update the go dependency by applying the Golang command:
 ```
 go get github.com/openshift/api@v3.9.0
 ```
 
-In case if you have error: *Unauthorized* error in logs, check you current *KUBECONFIG* path.
-You can specify another *KUBECONFIG* path before running operator in Go build configuration (see point 4):
+##### CASE 2
+
+If you get the **Unauthorized** error in logs, check the current **KUBECONFIG** path. Before running the operator in the Go build configuration (see point 4), you can specify another **KUBECONFIG** path:
+
 ```
 WATCH_NAMESPACE=test-deploy-platform;PLATFORM_TYPE=openshift;KUBECONFIG=<<path to your kubeconfig>>
 ```
