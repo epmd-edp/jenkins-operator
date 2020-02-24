@@ -1,0 +1,16 @@
+{{ if eq .Values.platform "openshift" }}
+apiVersion: authorization.openshift.io/v1
+kind: RoleBinding
+metadata:
+  name: jenkins-operator
+roleRef:
+  kind: Role
+  name: edp-deploy-role
+subjects:
+  - kind: ServiceAccount
+    name: "{{ .Values.name }}-edp"
+    namespace: {{ .Values.namespace }}
+userNames:
+  - system:serviceaccount:{{ .Values.namespace }}:{{ .Values.name }}-edp
+groupNames: []
+{{ end }}
