@@ -1,0 +1,11 @@
+name: jenkins-operator
+namespace: ""
+cdPipelineName: ""
+dnsWildcard: ""
+database:
+  required: false
+ingress:
+  required: false
+image:
+  name: ""
+  version: ""
