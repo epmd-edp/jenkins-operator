@@ -208,15 +208,15 @@ func (service K8SService) CreateServiceAccount(instance v1alpha1.Jenkins) error 
 }
 
 // GetExternalEndpoint returns Ingress object and connection protocol from Kubernetes
-func (service K8SService) GetExternalEndpoint(namespace string, name string) (string, string, error) {
+func (service K8SService) GetExternalEndpoint(namespace string, name string) (string, string, string, error) {
 	ingress, err := service.extensionsV1Client.Ingresses(namespace).Get(name, metav1.GetOptions{})
 	if err != nil && k8sErrors.IsNotFound(err) {
-		return "", "", errors.New(fmt.Sprintf("Ingress %v in namespace %v not found", name, namespace))
+		return "", "", "", errors.New(fmt.Sprintf("Ingress %v in namespace %v not found", name, namespace))
 	} else if err != nil {
-		return "", "", err
+		return "", "", "", err
 	}
 
-	return ingress.Spec.Rules[0].Host, jenkinsDefaultSpec.RouteHTTPSScheme, nil
+	return ingress.Spec.Rules[0].Host, jenkinsDefaultSpec.RouteHTTPSScheme, ingress.Spec.Rules[0].HTTP.Paths[0].Path, nil
 }
 
 // AddVolumeToInitContainer adds volume to Jenkins init container
@@ -258,7 +258,7 @@ func (service K8SService) AddVolumeToInitContainer(instance v1alpha1.Jenkins, co
 // CreateDeployment performs creating Deployment in K8S
 func (service K8SService) CreateDeployment(instance v1alpha1.Jenkins) error {
 	reqLog := log.WithValues("jenkins ", instance)
-	h, s, err := service.GetExternalEndpoint(instance.Namespace, instance.Name)
+	h, s, p, err := service.GetExternalEndpoint(instance.Namespace, instance.Name)
 	if err != nil {
 		return err
 	}
@@ -268,7 +268,7 @@ func (service K8SService) CreateDeployment(instance v1alpha1.Jenkins) error {
 	var uid int64 = 999
 	var gid int64 = 998
 	var fid int64 = 0
-	url := fmt.Sprintf("%v://%v", s, h)
+	url := fmt.Sprintf("%v://%v%v", s, h, p)
 
 	jo := &extensionsApi.Deployment{
 		ObjectMeta: metav1.ObjectMeta{
