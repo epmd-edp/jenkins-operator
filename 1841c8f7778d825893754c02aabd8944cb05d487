@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "4b22bc1d_4fa875de",
+        "filename": "deploy-templates/crds/v2_v1alpha1_jenkins_cr.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-03-04T08:11:52Z",
+      "side": 1,
+      "message": "Add this field to documentation/puml/arch.puml diagram",
+      "range": {
+        "startLine": 8,
+        "startChar": 2,
+        "endLine": 8,
+        "endChar": 10
+      },
+      "revId": "1841c8f7778d825893754c02aabd8944cb05d487",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": false
+    }
+  ]
+}
