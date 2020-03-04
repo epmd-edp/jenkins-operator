@@ -1,0 +1,7 @@
+Code-Review+2: Pavlo Yemelianov <pavlo_yemelianov@epam.com>
+Verified+1: CI Jenkins
+Submitted-by: Alexander Morozov <alexander_morozov@epam.com>
+Submitted-at: Wed, 04 Mar 2020 08:28:09 +0000
+Reviewed-on: https://gerrit-oc-green-edp-cicd.delivery.aws.main.edp.projects.epam.com/c/jenkins-operator/+/386
+Project: jenkins-operator
+Branch: refs/heads/master
