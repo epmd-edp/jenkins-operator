@@ -1,14 +1,14 @@
 <org.csanchez.jenkins.plugins.kubernetes.PodTemplate>
   <inheritFrom></inheritFrom>
-  <name>gradle</name>
+  <name>maven-java11</name>
   <namespace></namespace>
   <privileged>false</privileged>
-  <alwaysPullImage>true</alwaysPullImage>
+  <alwaysPullImage>false</alwaysPullImage>
   <instanceCap>2147483647</instanceCap>
   <slaveConnectTimeout>100</slaveConnectTimeout>
   <idleMinutes>5</idleMinutes>
   <activeDeadlineSeconds>0</activeDeadlineSeconds>
-  <label>gradle</label>
+  <label>maven-java11</label>
   <serviceAccount>jenkins</serviceAccount>
   <nodeSelector></nodeSelector>
   <nodeUsageMode>NORMAL</nodeUsageMode>
@@ -16,13 +16,18 @@
   <workspaceVolume class="org.csanchez.jenkins.plugins.kubernetes.volumes.workspace.EmptyDirWorkspaceVolume">
     <memory>false</memory>
   </workspaceVolume>
-  <volumes/>
+  <volumes>
+    <org.csanchez.jenkins.plugins.kubernetes.volumes.EmptyDirVolume>
+      <mountPath>/opt/caches/maven</mountPath>
+      <memory>false</memory>
+    </org.csanchez.jenkins.plugins.kubernetes.volumes.EmptyDirVolume>
+  </volumes>
   <containers>
     <org.csanchez.jenkins.plugins.kubernetes.ContainerTemplate>
       <name>jnlp</name>
-      <image>epamedp/jenkins-agent-gradle-openshift:java11</image>
+      <image>epamedp/jenkins-agent-maven-openshift:java11</image>
       <privileged>false</privileged>
-      <alwaysPullImage>true</alwaysPullImage>
+      <alwaysPullImage>false</alwaysPullImage>
       <workingDir>/tmp</workingDir>
       <command></command>
       <args>${computer.jnlpmac} ${computer.name}</args>
