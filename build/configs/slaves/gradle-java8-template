@@ -1,6 +1,6 @@
 <org.csanchez.jenkins.plugins.kubernetes.PodTemplate>
   <inheritFrom></inheritFrom>
-  <name>maven</name>
+  <name>gradle-java8</name>
   <namespace></namespace>
   <privileged>false</privileged>
   <alwaysPullImage>false</alwaysPullImage>
@@ -8,7 +8,7 @@
   <slaveConnectTimeout>100</slaveConnectTimeout>
   <idleMinutes>5</idleMinutes>
   <activeDeadlineSeconds>0</activeDeadlineSeconds>
-  <label>maven</label>
+  <label>gradle-java8</label>
   <serviceAccount>jenkins</serviceAccount>
   <nodeSelector></nodeSelector>
   <nodeUsageMode>NORMAL</nodeUsageMode>
@@ -16,16 +16,11 @@
   <workspaceVolume class="org.csanchez.jenkins.plugins.kubernetes.volumes.workspace.EmptyDirWorkspaceVolume">
     <memory>false</memory>
   </workspaceVolume>
-  <volumes>
-    <org.csanchez.jenkins.plugins.kubernetes.volumes.EmptyDirVolume>
-      <mountPath>/opt/caches/maven</mountPath>
-      <memory>false</memory>
-    </org.csanchez.jenkins.plugins.kubernetes.volumes.EmptyDirVolume>
-  </volumes>
+  <volumes/>
   <containers>
     <org.csanchez.jenkins.plugins.kubernetes.ContainerTemplate>
       <name>jnlp</name>
-      <image>epamedp/jenkins-agent-maven-openshift:java11</image>
+      <image>epamedp/jenkins-agent-gradle-openshift:java11</image>
       <privileged>false</privileged>
       <alwaysPullImage>false</alwaysPullImage>
       <workingDir>/tmp</workingDir>
