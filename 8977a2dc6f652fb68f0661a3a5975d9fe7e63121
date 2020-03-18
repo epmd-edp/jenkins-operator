@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f5b48de9_a0bf9b2a",
+        "filename": "pkg/service/jenkins/jenkins.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 619,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2020-03-18T13:10:09Z",
+      "side": 0,
+      "message": "Why did we remove that ?",
+      "range": {
+        "startLine": 611,
+        "startChar": 1,
+        "endLine": 619,
+        "endChar": 2
+      },
+      "revId": "8977a2dc6f652fb68f0661a3a5975d9fe7e63121",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "80bac370_a833480e",
+        "filename": "pkg/service/platform/kubernetes/k8s.go",
+        "patchSetId": 3
+      },
+      "lineNbr": 96,
+      "author": {
+        "id": 1000009
+      },
+      "writtenOn": "2020-03-18T13:10:09Z",
+      "side": 0,
+      "message": "Why did we removed this code ? As far as I remember, we need to keep the backward compatibility for the Helm 2. This is a part of it.",
+      "range": {
+        "startLine": 95,
+        "startChar": 0,
+        "endLine": 96,
+        "endChar": 75
+      },
+      "revId": "8977a2dc6f652fb68f0661a3a5975d9fe7e63121",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": false
+    }
+  ]
+}
