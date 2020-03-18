@@ -1,0 +1,8 @@
+Verified+1: CI Jenkins
+Code-Review+1: Mykola Marusenko <mykola_marusenko@epam.com>
+Code-Review+2: Serhii Shydlovskyi <serhii_shydlovskyi@epam.com>
+Submitted-by: Serhii Shydlovskyi <serhii_shydlovskyi@epam.com>
+Submitted-at: Wed, 18 Mar 2020 08:37:52 +0000
+Reviewed-on: https://gerrit-oc-green-edp-cicd.delivery.aws.main.edp.projects.epam.com/c/jenkins-operator/+/561
+Project: jenkins-operator
+Branch: refs/heads/release-2.2
