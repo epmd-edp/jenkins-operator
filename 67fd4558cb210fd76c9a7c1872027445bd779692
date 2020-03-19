@@ -1,0 +1,7 @@
+Verified+1: CI Jenkins
+Code-Review+2: Stanislav Kostenko <stanislav_kostenko@epam.com>
+Submitted-by: Stanislav Kostenko <stanislav_kostenko@epam.com>
+Submitted-at: Thu, 19 Mar 2020 15:02:55 +0000
+Reviewed-on: https://gerrit-oc-green-edp-cicd.delivery.aws.main.edp.projects.epam.com/c/jenkins-operator/+/586
+Project: jenkins-operator
+Branch: refs/heads/master
