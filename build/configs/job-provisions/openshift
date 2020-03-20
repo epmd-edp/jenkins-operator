@@ -74,6 +74,7 @@ def gitServerCrName = "${GIT_SERVER_CR_NAME}"
 def gitServerCrVersion = "${GIT_SERVER_CR_VERSION}"
 def gitCredentialsId = "${GIT_CREDENTIALS_ID ? GIT_CREDENTIALS_ID : 'gerrit-ciuser-sshkey'}"
 def repositoryPath = "${REPOSITORY_PATH}"
+def isReleaseBranch = "${IS_RELEASE_BRANCH}"
 
 def codebaseFolder = jenkins.getItem(codebaseName)
 if (codebaseFolder == null) {
@@ -90,6 +91,9 @@ if (buildTool.toString().equalsIgnoreCase('none')) {
 
 if (BRANCH) {
     def branch = "${BRANCH}"
+    if (isReleaseBranch) {
+        branch = branch.replaceFirst(/-/, "/")
+    }
     createListView(codebaseName, "${branch.toUpperCase()}")
 
     def type = "${TYPE}"
@@ -177,6 +181,7 @@ def createReleasePipeline(pipelineName, codebaseName, codebaseStages, pipelineSc
                     if (pipelineName.contains("Create-release")) {
                         stringParam("GERRIT_PROJECT", "${codebaseName}", "")
                         stringParam("RELEASE_NAME", "", "Name of the release(branch to be created)")
+                        stringParam("IS_RELEASE_BRANCH", "", "Is branch release)")
                         stringParam("COMMIT_ID", "", "Commit ID that will be used to create branch from for new release. If empty, HEAD of master will be used")
                         stringParam("GIT_SERVER_CR_NAME", "${gitServerCrName}", "Name of Git Server CR to generate link to Git server")
                         stringParam("GIT_SERVER_CR_VERSION", "${gitServerCrVersion}", "Version of GitServer CR Resource")
@@ -236,7 +241,8 @@ def definitionList = [new StringParameterDefinition("NAME", ""),
                       new StringParameterDefinition("GIT_SERVER_CR_NAME", ""),
                       new StringParameterDefinition("GIT_SERVER_CR_VERSION", ""),
                       new StringParameterDefinition("GIT_CREDENTIALS_ID", ""),
-                      new StringParameterDefinition("REPOSITORY_PATH", "")]
+                      new StringParameterDefinition("REPOSITORY_PATH", "")],
+                      new StringParameterDefinition("IS_RELEASE_BRANCH", "")]
 
 project.addProperty(new ParametersDefinitionProperty(definitionList))
 project.setConcurrentBuild(true)
