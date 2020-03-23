@@ -255,7 +255,8 @@ In the *Enter an item name field*, type the **Gitlab-webhook-listener** and clic
                         stringParam("GIT_SERVER_CR_VERSION", "${gitServerCrVersion}", "Version of GitServer CR Resource")
                         stringParam("STAGES", "${codebaseStages}", "Consequence of stages in JSON format to be run during execution")
                         stringParam("GERRIT_PROJECT_NAME", "${codebaseName}", "Gerrit project name(Codebase name) to be build")
-                        stringParam("BRANCH", "", "Branch to run from")
+                        if (pipelineName.contains("Build"))
+							stringParam("BRANCH", "${watchBranch}", "Branch to build artifact from")
                     }
                 }
             }
