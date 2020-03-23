@@ -25,15 +25,25 @@ func NewTrue() *bool {
 
 func NewJenkinsUser(data map[string][]byte, credentialsType string) (JenkinsCredentials, error) {
 	out := JenkinsCredentials{}
+	v := trimNewline(data)
+	var id string
+	if val, ok := v["id"]; ok {
+		id = val
+	} else if val, ok := v["username"]; ok {
+		id = val
+	} else {
+		return out, errors.New("Can't retrieve id from the secret, id or username should be specified mandatory")
+	}
+
 	switch credentialsType {
 	case SSHUserType:
-		params := createSshUserParams(data)
+		params := createSshUserParams(v, id)
 		return JenkinsCredentials{Credentials: params}, nil
 	case PasswordUserType:
-		params := createUserWithPassword(data)
+		params := createUserWithPassword(v, id)
 		return JenkinsCredentials{Credentials: params}, nil
 	case TokenUserType:
-		params := createStringCredentials(data)
+		params := createStringCredentials(v, id)
 		return JenkinsCredentials{Credentials: params}, nil
 	default:
 		return out, errors.New("Unknown credentials type!")
@@ -71,13 +81,12 @@ type PrivateKeySource struct {
 
 type StaplerClass string
 
-func createUserWithPassword(data map[string][]byte) JenkinsCredentialsParams {
-	values := trimNewline(data)
-	username := values["username"]
-	password := values["password"]
-	description := fmt.Sprintf("%s %s", values["first_name"], values["last_name"])
+func createUserWithPassword(data map[string]string, id string) JenkinsCredentialsParams {
+	username := data["username"]
+	password := data["password"]
+	description := fmt.Sprintf("%s %s", data["first_name"], data["last_name"])
 	return JenkinsCredentialsParams{
-		Id:           username,
+		Id:           id,
 		Scope:        GlobalScope,
 		Username:     &username,
 		Password:     &password,
@@ -86,31 +95,29 @@ func createUserWithPassword(data map[string][]byte) JenkinsCredentialsParams {
 	}
 }
 
-func createSshUserParams(data map[string][]byte) JenkinsCredentialsParams {
-	values := trimNewline(data)
-	username := values["username"]
-	password := values["password"]
-	description := fmt.Sprintf("%s %s", values["first_name"], values["last_name"])
+func createSshUserParams(data map[string]string, id string) JenkinsCredentialsParams {
+	username := data["username"]
+	password := data["password"]
+	description := fmt.Sprintf("%s %s", data["first_name"], data["last_name"])
 	return JenkinsCredentialsParams{
-		Id:          username,
+		Id:          id,
 		Scope:       GlobalScope,
 		Username:    &username,
 		Password:    &password,
 		Description: &description,
 		PrivateKeySource: &PrivateKeySource{
-			PrivateKey:   values["id_rsa"],
+			PrivateKey:   data["id_rsa"],
 			StaplerClass: "com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey$DirectEntryPrivateKeySource",
 		},
 		StaplerClass: "com.cloudbees.jenkins.plugins.sshcredentials.impl.BasicSSHUserPrivateKey",
 	}
 }
 
-func createStringCredentials(data map[string][]byte) JenkinsCredentialsParams {
-	values := trimNewline(data)
-	secret := values["secret"]
-	description := values["username"]
+func createStringCredentials(data map[string]string, id string) JenkinsCredentialsParams {
+	secret := data["secret"]
+	description := data["username"]
 	return JenkinsCredentialsParams{
-		Id:           values["username"],
+		Id:           id,
 		Scope:        GlobalScope,
 		Secret:       &secret,
 		Description:  &description,
