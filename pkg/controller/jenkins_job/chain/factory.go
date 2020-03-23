@@ -22,18 +22,29 @@ func CreateDefChain(s *runtime.Scheme, c *client.Client) (handler2.JenkinsJobHan
 	cs := openshift.CreateOpenshiftClients()
 	cs.Client = *c
 
-	return PutClusterProject{
-		next: PutRoleBinding{
+	if pt == "openshift" {
+		return PutClusterProject{
+			next: PutRoleBinding{
+				next: PutJenkinsPipeline{
+					cs: *cs,
+					ps: ps,
+				},
+				cs: *cs,
+				ps: ps,
+			},
+			cs: *cs,
+			ps: ps,
+		}, nil
+	} else {
+		return PutClusterProject{
 			next: PutJenkinsPipeline{
 				cs: *cs,
 				ps: ps,
 			},
 			cs: *cs,
 			ps: ps,
-		},
-		cs: *cs,
-		ps: ps,
-	}, nil
+		}, nil
+	}
 }
 
 func nextServeOrNil(next handler2.JenkinsJobHandler, jj *v1alpha1.JenkinsJob) error {
