@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "aba4d46f_1db3dd3e",
+        "filename": "pkg/controller/jenkins_job/chain/factory.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-03-23T13:31:28Z",
+      "side": 1,
+      "message": "get gid of else statement",
+      "revId": "83577d48cbfecab39405949682697bf58c100107",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": false
+    }
+  ]
+}
