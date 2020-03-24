@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d2d3c990_b41b645f",
+        "filename": "pkg/controller/helper/helper.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 34,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-03-24T08:13:50Z",
+      "side": 1,
+      "message": "Let\u0027s return error in this case",
+      "range": {
+        "startLine": 32,
+        "startChar": 3,
+        "endLine": 34,
+        "endChar": 2
+      },
+      "revId": "eeea0d2b06a8eb65d966f0aa0a92dd8f86814079",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "446d6f7b_c8fa96a0",
+        "filename": "pkg/controller/helper/helper.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000003
+      },
+      "writtenOn": "2020-03-24T08:13:50Z",
+      "side": 1,
+      "message": "And here check error, not empty string",
+      "range": {
+        "startLine": 41,
+        "startChar": 1,
+        "endLine": 43,
+        "endChar": 2
+      },
+      "revId": "eeea0d2b06a8eb65d966f0aa0a92dd8f86814079",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": false
+    }
+  ]
+}
