@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "11eaf85b_49ff13ba",
+        "filename": "README.md",
+        "patchSetId": 5
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000007
+      },
+      "writtenOn": "2020-04-08T07:53:34Z",
+      "side": 1,
+      "message": "Replace with bash because it\u0027s a console command",
+      "range": {
+        "startLine": 20,
+        "startChar": 3,
+        "endLine": 20,
+        "endChar": 7
+      },
+      "revId": "59dd0b9df5eb57770654b42a60db3816e8891531",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    }
+  ]
+}
