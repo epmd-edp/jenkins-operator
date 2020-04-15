@@ -304,6 +304,7 @@ def registerWebHook(repositoryPath, type = 'code-review') {
     def webhookConfig = [:]
     def config = [:]
     def events = []
+    def secret_token = getSecretValue('github-access-token')
 
     if (type.equalsIgnoreCase('build')) {
         webhookUrl = System.getenv('JENKINS_UI_URL') + "/github-webhook/"
@@ -335,7 +336,7 @@ def registerWebHook(repositoryPath, type = 'code-review') {
     println(apiUrl)
     http.setRequestProperty("Accept", 'application/json')
     http.setRequestProperty("Content-Type", 'application/json')
-    http.setRequestProperty("Authorization", "token ${getSecretValue('github-access-token')}")
+    http.setRequestProperty("Authorization", "token ${secret_token}")
     http.outputStream.write(requestBody.getBytes("UTF-8"))
     http.connect()
     println(http.responseCode)
