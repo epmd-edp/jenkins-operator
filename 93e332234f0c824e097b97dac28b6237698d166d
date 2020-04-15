@@ -1,0 +1,96 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7434cb4c_3ce46239",
+        "filename": "build/configs/job-provisions/kubernetes",
+        "patchSetId": 1
+      },
+      "lineNbr": 44,
+      "author": {
+        "id": 1000006
+      },
+      "writtenOn": "2020-04-15T12:29:29Z",
+      "side": 1,
+      "message": "in library we have no Helm charts",
+      "range": {
+        "startLine": 44,
+        "startChar": 28,
+        "endLine": 44,
+        "endChar": 51
+      },
+      "revId": "93e332234f0c824e097b97dac28b6237698d166d",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "c091d5e7_9aef594b",
+        "filename": "build/configs/job-provisions/kubernetes",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000006
+      },
+      "writtenOn": "2020-04-15T12:29:29Z",
+      "side": 1,
+      "message": "And in autotest also",
+      "range": {
+        "startLine": 45,
+        "startChar": 101,
+        "endLine": 45,
+        "endChar": 124
+      },
+      "revId": "93e332234f0c824e097b97dac28b6237698d166d",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "7b9b2c67_fc2a9756",
+        "filename": "build/configs/job-provisions/kubernetes",
+        "patchSetId": 1
+      },
+      "lineNbr": 49,
+      "author": {
+        "id": 1000006
+      },
+      "writtenOn": "2020-04-15T12:29:29Z",
+      "side": 1,
+      "message": "and here",
+      "range": {
+        "startLine": 49,
+        "startChar": 46,
+        "endLine": 49,
+        "endChar": 69
+      },
+      "revId": "93e332234f0c824e097b97dac28b6237698d166d",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "a7e62a74_0b0cc12c",
+        "filename": "build/configs/job-provisions/kubernetes",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000006
+      },
+      "writtenOn": "2020-04-15T12:29:29Z",
+      "side": 1,
+      "message": "and here",
+      "range": {
+        "startLine": 53,
+        "startChar": 46,
+        "endLine": 53,
+        "endChar": 69
+      },
+      "revId": "93e332234f0c824e097b97dac28b6237698d166d",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    }
+  ]
+}
