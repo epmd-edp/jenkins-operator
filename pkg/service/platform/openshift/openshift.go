@@ -10,6 +10,7 @@ import (
 	"github.com/epmd-edp/jenkins-operator/v2/pkg/model"
 	jenkinsDefaultSpec "github.com/epmd-edp/jenkins-operator/v2/pkg/service/jenkins/spec"
 	"github.com/epmd-edp/jenkins-operator/v2/pkg/service/platform/helper"
+	platformHelper "github.com/epmd-edp/jenkins-operator/v2/pkg/service/platform/helper"
 	"github.com/epmd-edp/jenkins-operator/v2/pkg/service/platform/kubernetes"
 	appsV1Api "github.com/openshift/api/apps/v1"
 	routeV1Api "github.com/openshift/api/route/v1"
@@ -28,6 +29,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/controller/controllerutil"
 	logf "sigs.k8s.io/controller-runtime/pkg/runtime/log"
+	"strings"
 
 	projectV1Client "github.com/openshift/client-go/project/clientset/versioned/typed/project/v1"
 
@@ -87,7 +89,7 @@ func (service OpenshiftService) GetExternalEndpoint(namespace string, name strin
 	if route.Spec.TLS.Termination != "" {
 		routeScheme = jenkinsDefaultSpec.RouteHTTPSScheme
 	}
-	return route.Spec.Host, routeScheme, route.Spec.Path, nil
+	return route.Spec.Host, routeScheme, strings.TrimRight(route.Spec.Path, platformHelper.UrlCutset), nil
 }
 
 // CreateDeployment - creates deployment configs for Jenkins instance
@@ -296,6 +298,13 @@ func (service OpenshiftService) CreateDeployment(instance v1alpha1.Jenkins) erro
 func (service OpenshiftService) CreateExternalEndpoint(instance v1alpha1.Jenkins) error {
 	labels := helper.GenerateLabels(instance.Name)
 
+	hostname := fmt.Sprintf("%v-%v.%v", instance.Name, instance.Namespace, instance.Spec.EdpSpec.DnsWildcard)
+	path := "/"
+	if len(instance.Spec.BasePath) != 0 {
+		hostname = instance.Spec.EdpSpec.DnsWildcard
+		path = fmt.Sprintf("/%v(/|$)(.*)", instance.Spec.BasePath)
+	}
+
 	routeObject := &routeV1Api.Route{
 		ObjectMeta: metav1.ObjectMeta{
 			Name:      instance.Name,
@@ -303,6 +312,8 @@ func (service OpenshiftService) CreateExternalEndpoint(instance v1alpha1.Jenkins
 			Labels:    labels,
 		},
 		Spec: routeV1Api.RouteSpec{
+			Path: path,
+			Host: hostname,
 			TLS: &routeV1Api.TLSConfig{
 				Termination:                   routeV1Api.TLSTerminationEdge,
 				InsecureEdgeTerminationPolicy: routeV1Api.InsecureEdgeTerminationPolicyRedirect,
