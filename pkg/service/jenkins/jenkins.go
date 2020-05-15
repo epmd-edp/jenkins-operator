@@ -334,30 +334,23 @@ func (j JenkinsServiceImpl) ExposeConfiguration(instance v1alpha1.Jenkins) (*v1a
 		upd = true
 	}
 
-	ps, err := j.getJobProvisionsList(fmt.Sprintf("/job/%v", defaultJobProvisionsDirectory), jc)
+	scopes := []string{defaultCiJobProvisionsDirectory}
+	ps := []v1alpha1.JobProvision{}
+	for _, scope := range scopes {
+		pr, err := jc.GetJobProvisions(fmt.Sprintf("/job/%v/job/%v", defaultJobProvisionsDirectory, scope))
+		if err != nil {
+			return &instance, upd, errors.Wrapf(err, "Unable to get Jenkins Job provisions list for scope %v", scope)
+		}
+		for _, p := range pr {
+			ps = append(ps, v1alpha1.JobProvision{p, scope})
+		}
+	}
 	if !reflect.DeepEqual(instance.Status.JobProvisions, ps) {
 		instance.Status.JobProvisions = ps
 		upd = true
 	}
-	ps, err = j.getJobProvisionsList(fmt.Sprintf("/job/%v/job/%v", defaultJobProvisionsDirectory, defaultCiJobProvisionsDirectory), jc)
-	if !reflect.DeepEqual(instance.Status.CiJobProvisions, ps) {
-		instance.Status.CiJobProvisions = ps
-		upd = true
-	}
 	err = j.createEDPComponent(instance)
 	return &instance, upd, err
-}
-
-func (j JenkinsServiceImpl) getJobProvisionsList(jobPath string, jc *jenkinsClient.JenkinsClient) ([]v1alpha1.JobProvision, error) {
-	pr, err := jc.GetJobProvisions(jobPath)
-	ps := []v1alpha1.JobProvision{}
-	for _, p := range pr {
-		if p == "ci" {
-			continue
-		}
-		ps = append(ps, v1alpha1.JobProvision{p})
-	}
-	return ps, err
 }
 
 func (j JenkinsServiceImpl) createEDPComponent(jen v1alpha1.Jenkins) error {
@@ -463,11 +456,6 @@ func (j JenkinsServiceImpl) Configure(instance v1alpha1.Jenkins) (*v1alpha1.Jenk
 		}
 	}
 	var configMapName string
-	instance, configMapName, err = j.createJobProvisions(fmt.Sprintf("%v", defaultJobProvisionsDirectory), jc, instance)
-	if err != nil {
-		return &instance, false, err
-	}
-
 	instance, configMapName, err = j.createJobProvisions(fmt.Sprintf("%v/%v", defaultJobProvisionsDirectory, defaultCiJobProvisionsDirectory), jc, instance)
 	if err != nil {
 		return &instance, false, err
