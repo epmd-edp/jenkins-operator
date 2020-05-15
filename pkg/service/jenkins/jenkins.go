@@ -44,6 +44,7 @@ const (
 	defaultSlavesDirectory          = "slaves"
 	defaultJobProvisionsDirectory   = "job-provisions"
 	defaultCiJobProvisionsDirectory = "ci"
+	defaultCdJobProvisionsDirectory = "cd"
 	defaultTemplatesDirectory       = "templates"
 	slavesTemplateName              = "jenkins-slaves"
 	sharedLibrariesTemplateName     = "config-shared-libraries.tmpl"
@@ -334,23 +335,32 @@ func (j JenkinsServiceImpl) ExposeConfiguration(instance v1alpha1.Jenkins) (*v1a
 		upd = true
 	}
 
-	scopes := []string{defaultCiJobProvisionsDirectory}
 	ps := []v1alpha1.JobProvision{}
-	for _, scope := range scopes {
-		pr, err := jc.GetJobProvisions(fmt.Sprintf("/job/%v/job/%v", defaultJobProvisionsDirectory, scope))
-		if err != nil {
-			return &instance, upd, errors.Wrapf(err, "Unable to get Jenkins Job provisions list for scope %v", scope)
-		}
-		for _, p := range pr {
-			ps = append(ps, v1alpha1.JobProvision{p, scope})
-		}
-	}
+
+	ps, err = getJobProvisionData(ps, defaultCiJobProvisionsDirectory, jc)
+	ps, err = getJobProvisionData(ps, defaultCdJobProvisionsDirectory, jc)
+
 	if !reflect.DeepEqual(instance.Status.JobProvisions, ps) {
 		instance.Status.JobProvisions = ps
 		upd = true
 	}
 	err = j.createEDPComponent(instance)
 	return &instance, upd, err
+}
+
+func getJobProvisionData(ps []v1alpha1.JobProvision, jobPath string, jc *jenkinsClient.JenkinsClient) ([]v1alpha1.JobProvision, error) {
+	scopes := []string{jobPath}
+	var err error
+	for _, scope := range scopes {
+		pr, err := jc.GetJobProvisions(fmt.Sprintf("/job/%v/job/%v", defaultJobProvisionsDirectory, scope))
+		if err != nil {
+			return ps, errors.Wrapf(err, "Unable to get Jenkins Job provisions list for scope %v", scope)
+		}
+		for _, p := range pr {
+			ps = append(ps, v1alpha1.JobProvision{p, scope})
+		}
+	}
+	return ps, err
 }
 
 func (j JenkinsServiceImpl) createEDPComponent(jen v1alpha1.Jenkins) error {
@@ -457,6 +467,11 @@ func (j JenkinsServiceImpl) Configure(instance v1alpha1.Jenkins) (*v1alpha1.Jenk
 	}
 
 	err = j.createJobProvisions(fmt.Sprintf("%v/%v", defaultJobProvisionsDirectory, defaultCiJobProvisionsDirectory), jc, instance)
+	if err != nil {
+		return &instance, false, err
+	}
+
+	err = j.createJobProvisions(fmt.Sprintf("%v/%v", defaultJobProvisionsDirectory, defaultCdJobProvisionsDirectory), jc, instance)
 	if err != nil {
 		return &instance, false, err
 	}
