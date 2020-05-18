@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "e056a1c1_c4f02433",
+        "filename": "pkg/service/jenkins/jenkins.go",
+        "patchSetId": 4
+      },
+      "lineNbr": 469,
+      "author": {
+        "id": 1000006
+      },
+      "writtenOn": "2020-05-18T11:14:08Z",
+      "side": 1,
+      "message": "Let\u0027s do it in a loop",
+      "range": {
+        "startLine": 461,
+        "startChar": 0,
+        "endLine": 469,
+        "endChar": 2
+      },
+      "revId": "bddea54a3bc60025cde97cf3c50a13996036daf9",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    }
+  ]
+}
