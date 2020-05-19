@@ -41,13 +41,13 @@ def jiraIntegrationEnabled = Boolean.parseBoolean("${JIRA_INTEGRATION_ENABLED}" 
 
 if (jiraIntegrationEnabled) {
     stages['Code-review-application'] = '[{"name": "gerrit-checkout"},{"name": "commit-validate"},{"name": "compile"},{"name": "tests"},' +
-            '{"name": "sonar"}]'
+            '{"name": "sonar"},{"name": "sonar-cleanup"}]'
     stages['Code-review-library'] = '[{"name": "gerrit-checkout"},{"name": "commit-validate"},{"name": "compile"},{"name": "tests"},' +
             '{"name": "sonar"}]'
     stages['Code-review-autotests'] = '[{"name": "gerrit-checkout"},{"name": "commit-validate"},{"name": "tests"},{"name": "sonar"}]'
 } else {
     stages['Code-review-application'] = '[{"name": "gerrit-checkout"},{"name": "compile"},{"name": "tests"},' +
-            '{"name": "sonar"}]'
+            '{"name": "sonar"},{"name": "sonar-cleanup"}]'
     stages['Code-review-library'] = '[{"name": "gerrit-checkout"},{"name": "compile"},{"name": "tests"},' +
             '{"name": "sonar"}]'
     stages['Code-review-autotests'] = '[{"name": "gerrit-checkout"},{"name": "tests"},{"name": "sonar"}]'
