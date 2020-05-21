@@ -18,6 +18,7 @@ type JenkinsFolderSpec struct {
 	CodebaseName *string `json:"codebaseName"`
 	OwnerName    *string `json:"ownerName"`
 	JobName      *string `json:"jobName"`
+	Job          Job     `json: "Job"`
 }
 
 // JenkinsFolderStatus defines the observed state of Jenkins
