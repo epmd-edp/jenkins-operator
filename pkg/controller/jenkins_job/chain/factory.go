@@ -37,6 +37,30 @@ func CreateDefChain(s *runtime.Scheme, c *client.Client) (handler2.JenkinsJobHan
 
 }
 
+func CreateTriggerJobProvisionChain(s *runtime.Scheme, c *client.Client) (handler2.JenkinsJobHandler, error) {
+	pt := helper.GetPlatformTypeEnv()
+	ps, err := platform.NewPlatformService(pt, s, c)
+	if err != nil {
+		return nil, err
+	}
+	cs := openshift.CreateOpenshiftClients()
+	cs.Client = *c
+
+	return PutClusterProject{
+		next: PutRoleBinding{
+			next: TriggerJobProvision{
+				cs: *cs,
+				ps: ps,
+			},
+			cs: *cs,
+			ps: ps,
+		},
+		cs: *cs,
+		ps: ps,
+	}, nil
+
+}
+
 func nextServeOrNil(next handler2.JenkinsJobHandler, jj *v1alpha1.JenkinsJob) error {
 	if next != nil {
 		return next.ServeRequest(jj)
