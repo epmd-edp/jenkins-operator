@@ -1,0 +1,73 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "7182459f_b51ac92b",
+        "filename": "documentation/github-integration.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 20,
+      "author": {
+        "id": 1000015
+      },
+      "writtenOn": "2020-05-26T12:22:01Z",
+      "side": 1,
+      "message": "Generate and add a new SSH key to the GitHub account. To get more detailed information, please inspect the [official GitHub documentation](https://help.github.com/en/github/authenticating-to-github/adding-a-new-ssh-key-to-your-github-account) page.",
+      "range": {
+        "startLine": 20,
+        "startChar": 42,
+        "endLine": 20,
+        "endChar": 49
+      },
+      "revId": "496b78bda4bcee1514a36878a4d85c51bc5b978a",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "9e340764_94f8451e",
+        "filename": "documentation/github-integration.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 21,
+      "author": {
+        "id": 1000015
+      },
+      "writtenOn": "2020-05-26T12:22:01Z",
+      "side": 1,
+      "message": "_**NOTE:** Use the same SSH key that was added to the GitServer definition._",
+      "range": {
+        "startLine": 21,
+        "startChar": 38,
+        "endLine": 21,
+        "endChar": 39
+      },
+      "revId": "496b78bda4bcee1514a36878a4d85c51bc5b978a",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "5d05ef24_1aa3fada",
+        "filename": "documentation/github-integration.md",
+        "patchSetId": 2
+      },
+      "lineNbr": 23,
+      "author": {
+        "id": 1000015
+      },
+      "writtenOn": "2020-05-26T12:22:01Z",
+      "side": 1,
+      "message": "Add a private part of the SSH key to Jenkins by navigating to Jenkins -\u003e Credentials -\u003e System -\u003e Global credentials -\u003e Add credentials; and create new credentials with the *SSH username with private key* kind:",
+      "range": {
+        "startLine": 23,
+        "startChar": 39,
+        "endLine": 23,
+        "endChar": 47
+      },
+      "revId": "496b78bda4bcee1514a36878a4d85c51bc5b978a",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    }
+  ]
+}
