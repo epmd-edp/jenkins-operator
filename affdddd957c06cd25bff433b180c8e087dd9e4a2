@@ -1,0 +1,38 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "47afaaeb_71ad2f8c",
+        "filename": "pkg/controller/jenkins_job/chain/trigger_job_provision.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-05-28T13:39:54Z",
+      "side": 1,
+      "message": "lets make it as private method",
+      "revId": "affdddd957c06cd25bff433b180c8e087dd9e4a2",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "12c61f6b_ea6f07c8",
+        "filename": "pkg/controller/jenkins_job/jenkins_job_controller.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 11,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-05-28T13:39:54Z",
+      "side": 1,
+      "message": "rename package var",
+      "revId": "affdddd957c06cd25bff433b180c8e087dd9e4a2",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    }
+  ]
+}
