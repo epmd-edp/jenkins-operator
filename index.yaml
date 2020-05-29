@@ -1,0 +1,15 @@
+apiVersion: v1
+entries:
+  jenkins-operator:
+  - apiVersion: v1
+    created: "2020-05-29T16:35:51.9281186+03:00"
+    description: Helm chart for Golang application/service deploying
+    digest: de2b2d5a076840ca9229e430d8dc72e5e1424512a02c882e30ad7963e729c709
+    home: https://www.epam.com
+    keywords:
+    - Golang
+    name: jenkins-operator
+    urls:
+    - https://epmd-edp.github.io/jenkins-operator/jenkins-operator-1.tgz
+    version: "1"
+generated: "2020-05-29T16:35:51.9271429+03:00"
