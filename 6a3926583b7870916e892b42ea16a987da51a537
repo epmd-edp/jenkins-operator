@@ -1,0 +1,50 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "163843e4_8ca37c38",
+        "filename": "build/configs/job-provisions/cd/kubernetes",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000006
+      },
+      "writtenOn": "2020-06-05T06:07:43Z",
+      "side": 1,
+      "message": "Do not understand",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 49
+      },
+      "revId": "6a3926583b7870916e892b42ea16a987da51a537",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "00db47a9_20a8e3c6",
+        "filename": "build/configs/job-provisions/cd/openshift",
+        "patchSetId": 1
+      },
+      "lineNbr": 40,
+      "author": {
+        "id": 1000006
+      },
+      "writtenOn": "2020-06-05T06:07:43Z",
+      "side": 1,
+      "message": "The same",
+      "range": {
+        "startLine": 40,
+        "startChar": 0,
+        "endLine": 40,
+        "endChar": 49
+      },
+      "revId": "6a3926583b7870916e892b42ea16a987da51a537",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    }
+  ]
+}
