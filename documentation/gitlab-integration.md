@@ -98,7 +98,7 @@ In the *Enter an item name field*, type the **Gitlab-webhook-listener** and clic
     }
     ```
 
-6. Create a new Job Provision. Navigate to the Jenkins main page and open the *job-provisions* folder:
+6. Create a new Job Provision. Navigate to the Jenkins main page and open the *job-provisions/ci* folder:
 
     * Click *New Item*;
     * Type the name;
