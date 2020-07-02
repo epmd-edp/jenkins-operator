@@ -11,6 +11,7 @@ edp:
 
 jenkins:
   deploy: true
+  initImage: "busybox"
   image: "docker-registry.default.svc:5000/oc-green-edp-cicd/edp-jenkins-master"
   version: "master-2.4.0-26"
   storageClass: gp2
