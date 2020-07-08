@@ -6,8 +6,8 @@ image:
   version: v2.4.0
 
 edp:
-  name: "stub-edp-name"
-  dnsWildCard: "delivery.aws.main.edp.projects.epam.com"
+  name: "edp"
+  dnsWildCard: ""
 
 jenkins:
   deploy: true
@@ -17,8 +17,8 @@ jenkins:
   storageClass: gp2
   volumeCapacity: 10Gi
   libraryPipelinesRepo: "https://github.com/epmd-edp/edp-library-pipelines.git"
-  libraryPipelinesVersion: "master"
+  libraryPipelinesVersion: "2.5.0"
   libraryStagesRepo: "https://github.com/epmd-edp/edp-library-stages.git"
-  libraryStagesVersion: "master"
+  libraryStagesVersion: "2.5.0"
   pullSecrets:
   basePath:
