@@ -1,0 +1,7 @@
+Verified+1: CI Jenkins
+Code-Review+2: Anton Tarianyk <anton_tarianyk@epam.com>
+Submitted-by: Viktor Voronin <viktor_voronin@epam.com>
+Submitted-at: Fri, 10 Jul 2020 11:24:58 +0000
+Reviewed-on: https://gerrit-oc-green-edp-cicd.delivery.aws.main.edp.projects.epam.com/c/jenkins-operator/+/3610
+Project: jenkins-operator
+Branch: refs/heads/master
