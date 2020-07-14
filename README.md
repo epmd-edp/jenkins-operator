@@ -1,10 +1,13 @@
-# EDP Jenkins Operator
+# Jenkins operator
 
 ## Overview
 
 Jenkins operator creates, deploys and manages the EDP Jenkins instance, which is equipped with the necessary plugins, on Kubernetes and OpenShift.  
+Also, Jenkins operator is responsible for creating Jenkins job's.
 
 There is an ability to customize the Jenkins instance and to check changes during the application creation.
+
+_**NOTE:** Operator is platform-independent, that is why there is an unified instruction for deploying._
 
 ### Prerequisites
 1. Linux machine or Windows Subsystem for Linux instance with [Helm 3](https://helm.sh/docs/intro/install/) installed;
@@ -53,11 +56,12 @@ Full available chart parameters list:
     - jenkins.imagePullSecrets               # Secrets to pull from private Docker registry;
     - jenkins.basePath                       # Base path for Jenkins URL.
 ```
-Set your parameters and launching a Helm chart deployment. Example command:
+
+Install operator in the <edp_cicd_project> namespace with helm command. Bellow is the installation command example:
 ```bash
 helm install jenkins-operator epamedp/jenkins-operator --version <chart_version> --namespace <edp_cicd_project> --set name=jenkins-operator --set global.edpName=<edp_cicd_project> --set global.platform=<platform_type> --set global.dnsWildCard=<cluster_DNS_wildcard> --set image.name=epamedp/jenkins-operator --set image.version=<operator_version>
 ```
-* Check the <edp_cicd_project> namespace that should contain Deployment with your operator in a running status
+* Check the <edp_cicd_project> namespace that should contain operator deployment with your operator in a running status
 
 In order to apply the necessary customization, get acquainted with the following sections:
 
