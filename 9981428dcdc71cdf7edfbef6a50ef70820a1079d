@@ -1,0 +1,7 @@
+Verified+1: CI Jenkins
+Code-Review+2: Pavlo Yemelianov <pavlo_yemelianov@epam.com>
+Submitted-by: Pavlo Yemelianov <pavlo_yemelianov@epam.com>
+Submitted-at: Fri, 24 Jul 2020 10:23:49 +0000
+Reviewed-on: https://gerrit-oc-green-edp-cicd.delivery.aws.main.edp.projects.epam.com/c/jenkins-operator/+/3942
+Project: jenkins-operator
+Branch: refs/heads/release/2.4
