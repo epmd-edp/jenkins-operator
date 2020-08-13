@@ -423,6 +423,8 @@ In the *Enter an item name field*, type the **Gitlab-webhook-listener** and clic
         return secret != null ? secret['secret'] : null
     }
     ```
-7. After the steps above are performed, the new custom job-provision will be available in Advanced CI Settings during the application creation.
+7. Create Secret, GitServer CR and Jenkins credentials with "gitlab" id using the following instruction: [Adjust Import Strategy](https://github.com/epmd-edp/admin-console/blob/release/2.4/documentation/import-strategy.md)
+
+8. After the steps above are performed, the new custom job-provision will be available in Advanced CI Settings during the application creation.
 
    ![job-provision](../readme-resource/AC_job-provisioner_field.png "job-provision")
