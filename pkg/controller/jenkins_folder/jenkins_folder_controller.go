@@ -2,6 +2,7 @@ package jenkins
 
 import (
 	"context"
+	"fmt"
 	"github.com/epmd-edp/jenkins-operator/v2/pkg/controller/helper"
 	"github.com/epmd-edp/jenkins-operator/v2/pkg/controller/jenkins_folder/chain"
 	"github.com/epmd-edp/jenkins-operator/v2/pkg/util/consts"
@@ -197,7 +198,10 @@ func (r ReconcileJenkinsFolder) tryToDeleteJenkinsFolder(jc jenkinsClient.Jenkin
 
 	fn := r.getJenkinsFolderName(jf)
 	if _, err := jc.GoJenkins.DeleteJob(fn); err != nil {
-		return &reconcile.Result{}, err
+		if err != fmt.Errorf("404"){
+			return &reconcile.Result{}, err
+		}
+		log.V(2).Info("404 code error when Jenkins job was deleted earlier during reconciliation")
 	}
 
 	jf.ObjectMeta.Finalizers = finalizer.RemoveString(jf.ObjectMeta.Finalizers, JenkinsFolderJenkinsFinalizerName)
