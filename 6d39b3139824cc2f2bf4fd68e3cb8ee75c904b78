@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "8ea74aaa_b99cf6ab",
+        "filename": "pkg/controller/jenkins_folder/jenkins_folder_controller.go",
+        "patchSetId": 6
+      },
+      "lineNbr": 204,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-08-17T12:42:41Z",
+      "side": 1,
+      "message": "add information about an error",
+      "revId": "6d39b3139824cc2f2bf4fd68e3cb8ee75c904b78",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    }
+  ]
+}
