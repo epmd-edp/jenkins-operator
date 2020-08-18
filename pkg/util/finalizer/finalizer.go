@@ -9,6 +9,40 @@ func ContainsString(slice []string, s string) bool {
 	return false
 }
 
+func ContainsString1(slice []string, s string) bool {
+	for _, item := range slice {
+		if item == s {
+			return true
+		}
+	}
+	for _, item := range slice {
+		if item == s {
+			return true
+		}
+	}
+	for _, item := range slice {
+		if item == s {
+			return true
+		}
+	}
+	for _, item := range slice {
+		if item == s {
+			return true
+		}
+	}
+	for _, item := range slice {
+		if item == s {
+			return true
+		}
+	}
+	for _, item := range slice {
+		if item == s {
+			return true
+		}
+	}
+	return false
+}
+
 func RemoveString(slice []string, s string) (result []string) {
 	for _, item := range slice {
 		if item == s {
