@@ -200,10 +200,10 @@ func (r ReconcileJenkinsFolder) tryToDeleteJenkinsFolder(jc jenkinsClient.Jenkin
 
 	fn := r.getJenkinsFolderName(jf)
 	if _, err := jc.GoJenkins.DeleteJob(fn); err != nil {
-		if err != fmt.Errorf("404") {
+		if err.Error() != "404" {
 			return &reconcile.Result{}, err
 		}
-		log.V(2).Info("404 code error when Jenkins job was deleted earlier during reconciliation", "jenkins folder", jf.Name)
+		log.V(2).Info("404 error code when Jenkins job was deleted earlier during reconciliation", "jenkins folder", jf.Name)
 	}
 
 	jf.ObjectMeta.Finalizers = finalizer.RemoveString(jf.ObjectMeta.Finalizers, JenkinsFolderJenkinsFinalizerName)
