@@ -2,7 +2,6 @@ package jenkins
 
 import (
 	"context"
-	"fmt"
 	"strings"
 	"time"
 
