@@ -1,0 +1,7 @@
+Verified+1: CI Jenkins
+Code-Review+2: Iryna Churkina <iryna_churkina@epam.com>
+Submitted-by: Iryna Churkina <iryna_churkina@epam.com>
+Submitted-at: Tue, 25 Aug 2020 14:53:09 +0000
+Reviewed-on: https://gerrit-oc-green-edp-cicd.delivery.aws.main.edp.projects.epam.com/c/jenkins-operator/+/4513
+Project: jenkins-operator
+Branch: refs/heads/master
