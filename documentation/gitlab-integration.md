@@ -93,7 +93,7 @@ Discover the steps below to apply the GitLab integration correctly:
                                            '{"name": "tests"}, {"name": "sonar"}]'
     stages['Code-review-library'] = '[{"name": "checkout"},{"name": "compile"},{"name": "tests"},' +
             '{"name": "sonar"}]'
-    stages['Code-review-autotests'] = '[{"name": "checkout"},{"name": "tests"},{"name": "sonar"}]'
+    stages['Code-review-autotests-maven'] = '[{"name": "checkout"},{"name": "tests"},{"name": "sonar"}]'
     stages['Build-library-maven'] = '[{"name": "checkout"},{"name": "get-version"},{"name": "compile"},' +
             '{"name": "tests"},{"name": "sonar"},{"name": "build"}' + "${createJFVStage}" + ',{"name": "git-tag"}]'
     stages['Build-library-npm'] = stages['Build-library-maven']
@@ -377,6 +377,8 @@ Discover the steps below to apply the GitLab integration correctly:
 7. After the steps above are performed, the new custom job-provision will be available in Advanced CI Settings during the application creation.
 
    ![job-provision](../readme-resource/AC_job-provisioner_field.png "job-provision")
+
+*Note: Using the GitLab integration, a webhook is automatically created. After the removal of the application, the webhook stops working but not deleted. If necessary, it must be deleted manually.*
    
 ### Related Articles
 
