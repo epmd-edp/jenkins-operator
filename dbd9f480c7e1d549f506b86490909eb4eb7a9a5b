@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "f930e41b_c9e63cda",
+        "filename": "build/configs/job-provisions/ci/openshift",
+        "patchSetId": 2
+      },
+      "lineNbr": 70,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-09-03T15:09:04Z",
+      "side": 1,
+      "message": "do we have docker files for both dotnet versions ?",
+      "revId": "dbd9f480c7e1d549f506b86490909eb4eb7a9a5b",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    }
+  ]
+}
