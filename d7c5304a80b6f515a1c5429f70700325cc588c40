@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "84d1adee_1a18c714",
+        "filename": "documentation/internal/job-provisions/ci/openshift",
+        "patchSetId": 1
+      },
+      "lineNbr": 45,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-10-20T14:12:28Z",
+      "side": 1,
+      "message": "initialize variables as close as possible to the place where you use it",
+      "revId": "d7c5304a80b6f515a1c5429f70700325cc588c40",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    }
+  ]
+}
