@@ -58,17 +58,7 @@ func (h PutClusterProject) tryToCreateProject(jj *v1alpha1.JenkinsJob) error {
 }
 
 func (h PutClusterProject) createProject(s pipev1alpha1.Stage, name string) error {
-	or := []metav1.OwnerReference{
-		{
-			APIVersion:         "v2.edp.epam.com/v1alpha1",
-			Kind:               consts.StageKind,
-			Name:               s.Name,
-			UID:                s.UID,
-			BlockOwnerDeletion: helper.NewTrue(),
-		},
-	}
-
-	if err := h.ps.CreateProject(name, or); err != nil {
+	if err := h.ps.CreateProject(name); err != nil {
 		if k8serrors.IsAlreadyExists(err) {
 			log.V(2).Info("project already exists. skip creating...", "name", name)
 			return nil
