@@ -44,15 +44,31 @@ func (h PutRoleBinding) tryToCreateRoleBinding(jj *v1alpha1.JenkinsJob) error {
 	}
 	en := d["edp_name"]
 	pn := fmt.Sprintf("%v-%v", en, s.Name)
-	if err := h.createRoleBinding(en, pn, jj.Namespace); err != nil {
-		return errors.Wrap(err, "an error has occurred while creating role binging")
+	if err := h.createAdminRoleBinding(en, pn, jj.Namespace); err != nil {
+		return errors.Wrap(err, "an error has occurred while creating admin role binging")
 	}
-	log.Info("role binding has been created")
+	log.Info("admin role binding has been created")
+	if err := h.createViewRoleBinding(en, pn); err != nil {
+		return errors.Wrap(err, "an error has occurred while creating view role binging")
+	}
+	log.Info("view role binding has been created")
 	return nil
 }
 
-func (h PutRoleBinding) createRoleBinding(edpName, projectName, namespace string) error {
-	err := h.ps.CreateRoleBinding(
+func (h PutRoleBinding) createAdminRoleBinding(edpName, projectName, namespace string) error {
+	rb, err := h.ps.GetRoleBinding(edpName + "-admin", projectName)
+	if err != nil {
+		if err.Error() == "404" {
+			log.V(2).Info("admin RoleBinding not found, it will be created")
+		} else {
+			return errors.Wrapf(err, "an error has been occurred while getting admin RoleBinding")
+		}
+	}
+	if rb != nil {
+		log.V(2).Info("admin RoleBinding already exist, its creation will be skipped")
+		return nil
+	}
+	return h.ps.CreateRoleBinding(
 		edpName,
 		projectName,
 		rbacV1.RoleRef{Name: "admin", APIGroup: consts.AuthorizationApiGroup, Kind: consts.ClusterRoleKind},
@@ -63,8 +79,20 @@ func (h PutRoleBinding) createRoleBinding(edpName, projectName, namespace string
 			{Kind: "ServiceAccount", Name: consts.EdpAdminConsoleServiceAccount, Namespace: namespace},
 		},
 	)
+}
+
+func (h PutRoleBinding) createViewRoleBinding(edpName, projectName string) error {
+	rb, err := h.ps.GetRoleBinding(edpName + "-view", projectName)
 	if err != nil {
-		return err
+		if err.Error() == "404" {
+			log.V(2).Info("view RoleBinding not found, it will be created")
+		} else {
+			return errors.Wrapf(err, "an error has been occurred while getting view RoleBinding")
+		}
+	}
+	if rb != nil {
+		log.V(2).Info("view RoleBinding already exist, its creation will be skipped")
+		return nil
 	}
 	return h.ps.CreateRoleBinding(
 		edpName,
@@ -75,3 +103,4 @@ func (h PutRoleBinding) createRoleBinding(edpName, projectName, namespace string
 		},
 	)
 }
+
