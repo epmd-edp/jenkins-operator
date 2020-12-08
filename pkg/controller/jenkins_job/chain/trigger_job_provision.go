@@ -3,6 +3,7 @@ package chain
 import (
 	"context"
 	"encoding/json"
+	"fmt"
 	"github.com/epmd-edp/codebase-operator/v2/pkg/openshift"
 	"github.com/epmd-edp/jenkins-operator/v2/pkg/apis/v2/v1alpha1"
 	v2v1alpha1 "github.com/epmd-edp/jenkins-operator/v2/pkg/apis/v2/v1alpha1"
@@ -83,6 +84,13 @@ func (h TriggerJobProvision) triggerJobProvision(jj *v2v1alpha1.JenkinsJob) erro
 	var jpc map[string]string
 	err = json.Unmarshal([]byte(jj.Spec.Job.Config), &jpc)
 
+	pn, err := h.getParamFromJenkinsSpec("PIPELINE_NAME", jj)
+	sn, err := h.getParamFromJenkinsSpec("STAGE_NAME", jj)
+	jenkinsJobName := fmt.Sprintf("%v-cd-pipeline/job/%v", pn, sn)
+	if err := jc.GetJobByName(jenkinsJobName); err == nil {
+		return nil
+	}
+
 	bn, err := jc.BuildJob(jj.Spec.Job.Name, jpc)
 	if err != nil {
 		return errors.Wrap(err, "an error has been occurred while triggering job provisioning")
@@ -90,4 +98,14 @@ func (h TriggerJobProvision) triggerJobProvision(jj *v2v1alpha1.JenkinsJob) erro
 	jj.Status.JenkinsJobProvisionBuildNumber = *bn
 	log.Info("end triggering build job", "name", jj.Spec.Job.Name)
 	return nil
+}
+
+func (h TriggerJobProvision) getParamFromJenkinsSpec(name string, jj *v2v1alpha1.JenkinsJob) (string, error) {
+	jobConfig := make(map[string]string)
+	err := json.Unmarshal([]byte(jj.Spec.Job.Config), &jobConfig)
+	if err != nil {
+		return "", err
+	}
+	var stageName = jobConfig[name]
+	return stageName, nil
 }
