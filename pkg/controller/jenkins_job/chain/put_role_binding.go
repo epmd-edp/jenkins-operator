@@ -44,15 +44,24 @@ func (h PutRoleBinding) tryToCreateRoleBinding(jj *v1alpha1.JenkinsJob) error {
 	}
 	en := d["edp_name"]
 	pn := fmt.Sprintf("%v-%v", en, s.Name)
-	if err := h.createRoleBinding(en, pn, jj.Namespace); err != nil {
-		return errors.Wrap(err, "an error has occurred while creating role binging")
+	if err := h.createAdminRoleBinding(en, pn, jj.Namespace); err != nil {
+		return errors.Wrap(err, "an error has occurred while creating admin role binging")
 	}
-	log.Info("role binding has been created")
+	log.Info("admin role binding has been created")
+	if err := h.createViewRoleBinding(en, pn); err != nil {
+		return errors.Wrap(err, "an error has occurred while creating view role binging")
+	}
+	log.Info("view role binding has been created")
 	return nil
 }
 
-func (h PutRoleBinding) createRoleBinding(edpName, projectName, namespace string) error {
-	err := h.ps.CreateRoleBinding(
+func (h PutRoleBinding) createAdminRoleBinding(edpName, projectName, namespace string) error {
+	_, err := h.ps.GetRoleBinding(edpName + "-admin", projectName)
+	if err == nil {
+		log.V(2).Info("admin role binding already exist")
+		return nil
+	}
+	return h.ps.CreateRoleBinding(
 		edpName,
 		projectName,
 		rbacV1.RoleRef{Name: "admin", APIGroup: consts.AuthorizationApiGroup, Kind: consts.ClusterRoleKind},
@@ -63,8 +72,13 @@ func (h PutRoleBinding) createRoleBinding(edpName, projectName, namespace string
 			{Kind: "ServiceAccount", Name: consts.EdpAdminConsoleServiceAccount, Namespace: namespace},
 		},
 	)
-	if err != nil {
-		return err
+}
+
+func (h PutRoleBinding) createViewRoleBinding(edpName, projectName string) error {
+	_, err := h.ps.GetRoleBinding(edpName + "-view", projectName)
+	if err == nil {
+		log.V(2).Info("view role binding already exist")
+		return nil
 	}
 	return h.ps.CreateRoleBinding(
 		edpName,
