@@ -10,7 +10,11 @@ import (
 	plutil "github.com/epmd-edp/jenkins-operator/v2/pkg/util/platform"
 	"github.com/pkg/errors"
 	rbacV1 "k8s.io/api/rbac/v1"
+<<<<<<< HEAD   (34f454 [EPMDEDP-5802]: Fix deletion of manual job provision after r)
 	"strings"
+=======
+	k8sError "k8s.io/apimachinery/pkg/api/errors"
+>>>>>>> CHANGE (dde925 [EPMDEDP-5777]: Fix rolebindings creation after jenkins oper)
 )
 
 type PutRoleBinding struct {
@@ -45,13 +49,23 @@ func (h PutRoleBinding) tryToCreateRoleBinding(jj *v1alpha1.JenkinsJob) error {
 	}
 	en := d["edp_name"]
 	pn := fmt.Sprintf("%v-%v", en, s.Name)
+<<<<<<< HEAD   (34f454 [EPMDEDP-5802]: Fix deletion of manual job provision after r)
 	if err := h.createRoleBindings(en, pn, jj.Namespace); err != nil {
 		return errors.Wrap(err, "an error has occurred while creating role bingings")
+=======
+	if err := h.createAdminRoleBinding(en, pn, jj.Namespace); err != nil {
+		return errors.Wrap(err, "an error has occurred while creating admin role binging")
+>>>>>>> CHANGE (dde925 [EPMDEDP-5777]: Fix rolebindings creation after jenkins oper)
 	}
-	log.Info("role binding has been created")
+	log.Info("admin role binding has been created", "roleBindingName", en + "-admin")
+	if err := h.createViewRoleBinding(en, pn); err != nil {
+		return errors.Wrap(err, "an error has occurred while creating view role binging")
+	}
+	log.Info("view role binding has been created", "roleBindingName", en + "-view")
 	return nil
 }
 
+<<<<<<< HEAD   (34f454 [EPMDEDP-5802]: Fix deletion of manual job provision after r)
 func (h PutRoleBinding) createRoleBindings(edpName, projectName, namespace string) error {
 	cm, err := h.ps.GetConfigMapData(namespace, consts.EdpConfigMap)
 	if err != nil {
@@ -75,13 +89,41 @@ func (h PutRoleBinding) createAdminRoleBinding(adminGroups []string, edpName, pr
 	}
 
 	err := h.ps.CreateRoleBinding(
+=======
+func (h PutRoleBinding) createAdminRoleBinding(edpName, projectName, namespace string) error {
+	rb, err := h.ps.GetRoleBinding(edpName + "-admin", projectName)
+	if err != nil {
+		if k8sError.IsNotFound(err) == true {
+			log.V(2).Info("admin RoleBinding not found, it will be created", "roleBindingName", edpName + "-admin")
+		} else {
+			return errors.Wrapf(err, "an error has been occurred while getting admin RoleBinding")
+		}
+	}
+	if rb != nil {
+		log.V(2).Info("admin RoleBinding already exist, its creation will be skipped", "roleBindingName", edpName + "-admin")
+		return nil
+	}
+	return h.ps.CreateRoleBinding(
+>>>>>>> CHANGE (dde925 [EPMDEDP-5777]: Fix rolebindings creation after jenkins oper)
 		edpName,
 		projectName,
 		rbacV1.RoleRef{Name: "admin", APIGroup: consts.AuthorizationApiGroup, Kind: consts.ClusterRoleKind},
 		subjects,
 	)
+}
+
+func (h PutRoleBinding) createViewRoleBinding(edpName, projectName string) error {
+	rb, err := h.ps.GetRoleBinding(edpName + "-view", projectName)
 	if err != nil {
-		return err
+		if k8sError.IsNotFound(err) == true {
+			log.V(2).Info("view RoleBinding not found, it will be created", "roleBindingName", edpName + "-view")
+		} else {
+			return errors.Wrapf(err, "an error has been occurred while getting view RoleBinding")
+		}
+	}
+	if rb != nil {
+		log.V(2).Info("view RoleBinding already exist, its creation will be skipped", "roleBindingName", edpName + "-view")
+		return nil
 	}
 	return nil
 }
@@ -103,3 +145,4 @@ func (h PutRoleBinding) createDeveloperRoleBinding(developerGroups []string, edp
 	}
 	return nil
 }
+
