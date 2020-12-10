@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "62fc9718_7432b8bf",
+        "filename": "pkg/client/jenkins/jenkins.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-12-10T13:01:59Z",
+      "side": 1,
+      "message": "which jenkins job ? add name",
+      "revId": "c429c1c864a7eae8b8c212dc478c23fd2ab60bef",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "29a48334_ce19af1b",
+        "filename": "pkg/client/jenkins/jenkins.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 359,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-12-10T13:01:59Z",
+      "side": 1,
+      "message": "the same",
+      "revId": "c429c1c864a7eae8b8c212dc478c23fd2ab60bef",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "331bfed6_b302a80a",
+        "filename": "pkg/controller/jenkins_job/chain/trigger_job_provision.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 92,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-12-10T13:01:59Z",
+      "side": 1,
+      "message": "so? if an error has occurred logic continues anyway\n\nreturn wrapped error",
+      "revId": "c429c1c864a7eae8b8c212dc478c23fd2ab60bef",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "16f20dd3_493633a5",
+        "filename": "pkg/controller/jenkins_job/chain/trigger_job_provision.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 108,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-12-10T13:01:59Z",
+      "side": 1,
+      "message": "we discussed about passing config not spec",
+      "revId": "c429c1c864a7eae8b8c212dc478c23fd2ab60bef",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    }
+  ]
+}
