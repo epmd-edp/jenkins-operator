@@ -36,6 +36,40 @@
     },
     {
       "key": {
+        "uuid": "09d42f37_bae034e0",
+        "filename": "pkg/controller/jenkins_job/chain/trigger_job_provision.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 87,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-12-10T13:09:41Z",
+      "side": 1,
+      "message": "handle error",
+      "revId": "c429c1c864a7eae8b8c212dc478c23fd2ab60bef",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "8f9dec96_0218c54d",
+        "filename": "pkg/controller/jenkins_job/chain/trigger_job_provision.go",
+        "patchSetId": 2
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-12-10T13:09:41Z",
+      "side": 1,
+      "message": "handle error",
+      "revId": "c429c1c864a7eae8b8c212dc478c23fd2ab60bef",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
         "uuid": "331bfed6_b302a80a",
         "filename": "pkg/controller/jenkins_job/chain/trigger_job_provision.go",
         "patchSetId": 2
