@@ -1,0 +1,89 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "add9c9c7_eb03eece",
+        "filename": "pkg/client/jenkins/jenkins.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-12-10T09:00:02Z",
+      "side": 1,
+      "message": "due to method name i\u0027m expecting that job should be returned. it\u0027s not obvious to build subsequent logic relying on error",
+      "revId": "ae0d18e55abf826feec270e54eeaf760173b9969",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "60fc7830_81e7b1ec",
+        "filename": "pkg/client/jenkins/jenkins.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 356,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-12-10T09:00:02Z",
+      "side": 1,
+      "message": "let\u0027s stick to the same style:\nif err !\u003d nil {\n  return err\n}",
+      "revId": "ae0d18e55abf826feec270e54eeaf760173b9969",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0f6cc2b4_b30861c9",
+        "filename": "pkg/controller/jenkins_job/chain/trigger_job_provision.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 90,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-12-10T09:00:02Z",
+      "side": 1,
+      "message": "previous comments",
+      "revId": "ae0d18e55abf826feec270e54eeaf760173b9969",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "73dd0fe1_688f8f90",
+        "filename": "pkg/controller/jenkins_job/chain/trigger_job_provision.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 91,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-12-10T09:00:02Z",
+      "side": 1,
+      "message": "add logging",
+      "revId": "ae0d18e55abf826feec270e54eeaf760173b9969",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "472a8b6a_d512c61c",
+        "filename": "pkg/controller/jenkins_job/chain/trigger_job_provision.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 103,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-12-10T09:00:02Z",
+      "side": 1,
+      "message": "may we just pass the config object to method ?\n\ngetParameterFromJobConfig",
+      "revId": "ae0d18e55abf826feec270e54eeaf760173b9969",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    }
+  ]
+}
