@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "886b1acf_10287ae1",
+        "filename": "build/configs/job-provisions/ci/kubernetes",
+        "patchSetId": 1
+      },
+      "lineNbr": 53,
+      "author": {
+        "id": 1000020
+      },
+      "writtenOn": "2020-12-11T09:05:56Z",
+      "side": 1,
+      "message": "why not to re-use BRANCH?",
+      "range": {
+        "startLine": 53,
+        "startChar": 53,
+        "endLine": 53,
+        "endChar": 67
+      },
+      "revId": "a84e61ca33b3ea7b4690838052d9d0e9bdce3307",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    }
+  ]
+}
