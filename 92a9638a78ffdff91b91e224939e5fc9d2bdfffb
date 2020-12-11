@@ -1,0 +1,123 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "d3076421_02a708af",
+        "filename": "pkg/controller/jenkins_job/chain/put_role_binding.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 50,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-12-11T09:50:21Z",
+      "side": 1,
+      "message": "which name of created rb ? add to logger\n\nmove it to createAdminRoleBinding method",
+      "revId": "92a9638a78ffdff91b91e224939e5fc9d2bdfffb",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "31a3dfb4_ff80ac0e",
+        "filename": "pkg/controller/jenkins_job/chain/put_role_binding.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 54,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-12-11T09:50:21Z",
+      "side": 1,
+      "message": "the same",
+      "revId": "92a9638a78ffdff91b91e224939e5fc9d2bdfffb",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "aa8354ab_5245e356",
+        "filename": "pkg/controller/jenkins_job/chain/put_role_binding.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 62,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-12-11T09:50:21Z",
+      "side": 1,
+      "message": "specify with rb wasnt found",
+      "revId": "92a9638a78ffdff91b91e224939e5fc9d2bdfffb",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "1377fea8_2077ad39",
+        "filename": "pkg/controller/jenkins_job/chain/put_role_binding.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 68,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-12-11T09:50:21Z",
+      "side": 1,
+      "message": "the same",
+      "revId": "92a9638a78ffdff91b91e224939e5fc9d2bdfffb",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "dc754f6d_ed958dea",
+        "filename": "pkg/controller/jenkins_job/chain/put_role_binding.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 88,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-12-11T09:50:21Z",
+      "side": 1,
+      "message": "the same",
+      "revId": "92a9638a78ffdff91b91e224939e5fc9d2bdfffb",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2ac634dc_06b6121d",
+        "filename": "pkg/controller/jenkins_job/chain/put_role_binding.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 94,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-12-11T09:50:21Z",
+      "side": 1,
+      "message": "the same",
+      "revId": "92a9638a78ffdff91b91e224939e5fc9d2bdfffb",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "d9ac3b81_2ef1f1ab",
+        "filename": "pkg/service/platform/kubernetes/k8s.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 1043,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-12-11T09:50:21Z",
+      "side": 1,
+      "message": "not really understand why u deleted it",
+      "revId": "92a9638a78ffdff91b91e224939e5fc9d2bdfffb",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    }
+  ]
+}
