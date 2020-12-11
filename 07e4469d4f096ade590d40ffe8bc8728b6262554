@@ -1,0 +1,72 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a57b7a93_cc00c0ee",
+        "filename": "pkg/client/jenkins/jenkins.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 355,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-12-11T08:37:05Z",
+      "side": 1,
+      "message": "it\u0027s not correct usage of Info method. walk through code and find one",
+      "revId": "07e4469d4f096ade590d40ffe8bc8728b6262554",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "3e2084d8_ac011833",
+        "filename": "pkg/client/jenkins/jenkins.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 360,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-12-11T08:37:05Z",
+      "side": 1,
+      "message": "the same",
+      "revId": "07e4469d4f096ade590d40ffe8bc8728b6262554",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "2c977f97_92fac5cb",
+        "filename": "pkg/controller/jenkins_job/chain/trigger_job_provision.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 99,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-12-11T08:37:05Z",
+      "side": 1,
+      "message": "the same",
+      "revId": "07e4469d4f096ade590d40ffe8bc8728b6262554",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "420a1d27_520ae6e3",
+        "filename": "pkg/controller/jenkins_job/chain/trigger_job_provision.go",
+        "patchSetId": 5
+      },
+      "lineNbr": 105,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-12-11T08:37:05Z",
+      "side": 1,
+      "message": "the same",
+      "revId": "07e4469d4f096ade590d40ffe8bc8728b6262554",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    }
+  ]
+}
