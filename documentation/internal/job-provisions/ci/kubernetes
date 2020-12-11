@@ -184,7 +184,7 @@ def createReleasePipeline(pipelineName, codebaseName, codebaseStages, pipelineSc
                             url(repository)
                             credentials(credId)
                         }
-                        branches("master")
+                        branches("${DEFAULT_BRANCH}")
                         scriptPath("${pipelineScript}")
                     }
                 }
@@ -258,6 +258,7 @@ def definitionList = [new StringParameterDefinition("NAME", ""),
                       new StringParameterDefinition("TYPE", ""),
                       new StringParameterDefinition("BUILD_TOOL", ""),
                       new StringParameterDefinition("BRANCH", ""),
+                      new StringParameterDefinition("DEFAULT_BRANCH", ""),
                       new StringParameterDefinition("GIT_SERVER_CR_NAME", ""),
                       new StringParameterDefinition("GIT_SERVER_CR_VERSION", ""),
                       new StringParameterDefinition("GIT_CREDENTIALS_ID", ""),

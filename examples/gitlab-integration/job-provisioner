@@ -161,7 +161,7 @@ def createReleasePipeline(pipelineName, codebaseName, codebaseStages, pipelineSc
                             url(repository)
                             credentials(credId)
                         }
-                        branches("master")
+                        branches("${DEFAULT_BRANCH}")
                         scriptPath("${pipelineScript}")
                     }
                 }
