@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "934938ab_901ea6f3",
+        "filename": "pkg/controller/jenkins_job/chain/put_role_binding.go",
+        "patchSetId": 1
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1000005
+      },
+      "writtenOn": "2020-12-15T11:40:39Z",
+      "side": 1,
+      "message": "dont change old logic. use const",
+      "revId": "b5d1a173225b385d1dc619bf581d04317c69cb8c",
+      "serverId": "0350cb7f-c1b1-4710-a647-f6632dbafb3c",
+      "unresolved": true
+    }
+  ]
+}
